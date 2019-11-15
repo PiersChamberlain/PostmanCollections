@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "ba4b8cc0-7f58-49e4-a9c2-1a3ef0e77518",
+		"name": "DateTimeAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Date Time",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ebef5e36-8963-4b97-967b-2c016f34ab27",
+						"exec": [
+							"pm.test(\"StatusCode==200\", function(){pm.response.to.have.status(200);});",
+							"pm.test(\"ResponseTime<2secs\", function(){pm.expect(pm.response.responseTime).to.be.below(1000);});",
+							"pm.test(\"Notice Displays\",function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.utcOffset).to.eql(\"00:00:00\");",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://worldclockapi.com/api/json/utc/now",
+					"protocol": "http",
+					"host": [
+						"worldclockapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"json",
+						"utc",
+						"now"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
